@@ -14,10 +14,10 @@ func _ready():
 	
 func _process(delta):
 	self.transform.origin = nodeToTrack.transform.origin
-	self.transform.origin.y = self.transform.origin.y + 2
+	self.transform.origin.y = self.transform.origin.y + 1.5
 	
-	if next_spring_length < 2:
-		next_spring_length = 2
+	if next_spring_length < 1:
+		next_spring_length = 1
 	elif next_spring_length > 100:
 		next_spring_length = 100
 	
@@ -43,9 +43,9 @@ func _input(event):
 			
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_WHEEL_UP:
-			next_spring_length = self.spring_length-3
+			next_spring_length = self.spring_length-2
 		elif event.button_index == BUTTON_WHEEL_DOWN:
-			next_spring_length = self.spring_length+3
+			next_spring_length = self.spring_length+2
 	
 		
 		

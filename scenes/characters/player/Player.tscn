@@ -241,6 +241,4 @@ shape = SubResource( 14 )
 [node name="RootMotionView" type="RootMotionView" parent="."]
 animation_path = NodePath("../AnimationTree")
 
-[node name="Tween" type="Tween" parent="."]
-
 [editable path="Mesh"]

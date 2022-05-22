@@ -2,10 +2,9 @@ extends KinematicBody
 class_name Character
 
 onready var animation_tree:AnimationTree = $AnimationTree
-onready var tween:Tween = $Tween
+onready var mesh:Spatial = $Mesh
 
 var gravity:Vector3 = Vector3.ZERO
-onready var mesh:Spatial = $Mesh
 
 enum AnimationTreeState {
 	WALK = 0,
@@ -46,8 +45,8 @@ func _physics_process(delta):
 
 	if is_on_floor():
 		gravity = Vector3.ZERO
-	else:
-		gravity += Vector3(0.0, -9.8, 0) * delta
+	else:		 
+		gravity += Vector3(0.0, -9.8, 0)
 		
 	v += gravity
 
