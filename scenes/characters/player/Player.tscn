@@ -1,0 +1,246 @@
+[gd_scene load_steps=53 format=2]
+
+[ext_resource path="res://assets/ybot/ybot.gltf" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/base/Character.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeTransition" id=76]
+input_count = 2
+xfade_time = 0.3
+input_0/name = "walk"
+input_0/auto_advance = false
+input_1/name = "run"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=58]
+animation = "locomotion-pack-running-backward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "locomotion-pack-running-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=56]
+animation = "locomotion-pack-jump-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=57]
+animation = "locomotion-pack-idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=85]
+animation = "locomotion-pack-jump-backward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=77]
+animation = "locomotion-pack-jump-forward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=61]
+animation = "locomotion-pack-left-strafe-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=62]
+animation = "locomotion-pack-right-strafe-loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=71]
+advance_condition = "jump"
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=79]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=80]
+advance_condition = "jump"
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=81]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=86]
+advance_condition = "jump"
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=87]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachine" id=75]
+states/backward/node = SubResource( 58 )
+states/backward/position = Vector2( 370, 376 )
+states/forward/node = SubResource( 59 )
+states/forward/position = Vector2( 370, 95 )
+states/idle/node = SubResource( 57 )
+states/idle/position = Vector2( 370, 234 )
+states/idle-jump/node = SubResource( 56 )
+states/idle-jump/position = Vector2( 590, 158 )
+states/jump-backward/node = SubResource( 85 )
+states/jump-backward/position = Vector2( 572.403, 376 )
+states/jump-forward/node = SubResource( 77 )
+states/jump-forward/position = Vector2( 598, 90 )
+states/left/node = SubResource( 61 )
+states/left/position = Vector2( 167, 234 )
+states/right/node = SubResource( 62 )
+states/right/position = Vector2( 590, 234 )
+transitions = [ "idle", "backward", SubResource( 65 ), "backward", "idle", SubResource( 66 ), "idle", "left", SubResource( 67 ), "left", "idle", SubResource( 68 ), "idle", "right", SubResource( 69 ), "right", "idle", SubResource( 70 ), "idle", "idle-jump", SubResource( 71 ), "idle-jump", "idle", SubResource( 72 ), "idle", "forward", SubResource( 63 ), "forward", "idle", SubResource( 79 ), "forward", "jump-forward", SubResource( 80 ), "jump-forward", "forward", SubResource( 81 ), "backward", "jump-backward", SubResource( 86 ), "jump-backward", "backward", SubResource( 87 ) ]
+start_node = "idle"
+graph_offset = Vector2( 8.40272, 0 )
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "locomotion-pack-walking-backwards-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "locomotion-pack-walking-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "locomotion-pack-jump-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "locomotion-pack-idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=82]
+animation = "locomotion-pack-jump-backward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=88]
+animation = "locomotion-pack-jump-forward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=91]
+animation = "locomotion-pack-left-strafe-walking-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "locomotion-pack-right-strafe-walking-loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+advance_condition = "jump"
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+advance_condition = "jump"
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=84]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=89]
+advance_condition = "jump"
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=90]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=92]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=93]
+xfade_time = 0.3
+
+[sub_resource type="AnimationNodeStateMachine" id=53]
+states/backward/node = SubResource( 31 )
+states/backward/position = Vector2( 315, 296 )
+states/forward/node = SubResource( 32 )
+states/forward/position = Vector2( 315, 115 )
+states/idle/node = SubResource( 22 )
+states/idle/position = Vector2( 315, 201 )
+states/idle-jump/node = SubResource( 23 )
+states/idle-jump/position = Vector2( 518.872, 115 )
+states/jump-backward/node = SubResource( 82 )
+states/jump-backward/position = Vector2( 518.872, 296 )
+states/jump-forward/node = SubResource( 88 )
+states/jump-forward/position = Vector2( 315, 24.736 )
+states/left/node = SubResource( 91 )
+states/left/position = Vector2( 140.743, 201 )
+states/right/node = SubResource( 27 )
+states/right/position = Vector2( 518.872, 201 )
+transitions = [ "idle", "right", SubResource( 37 ), "right", "idle", SubResource( 40 ), "idle-jump", "idle", SubResource( 42 ), "forward", "idle", SubResource( 46 ), "idle", "forward", SubResource( 47 ), "idle", "backward", SubResource( 49 ), "backward", "idle", SubResource( 52 ), "idle", "idle-jump", SubResource( 55 ), "backward", "jump-backward", SubResource( 83 ), "jump-backward", "backward", SubResource( 84 ), "forward", "jump-forward", SubResource( 89 ), "jump-forward", "forward", SubResource( 90 ), "idle", "left", SubResource( 92 ), "left", "idle", SubResource( 93 ) ]
+start_node = "idle"
+graph_offset = Vector2( -322.257, -126.264 )
+
+[sub_resource type="AnimationNodeBlendTree" id=21]
+graph_offset = Vector2( -26.6574, 8.5 )
+nodes/anim_tree_state/node = SubResource( 76 )
+nodes/anim_tree_state/position = Vector2( 460, 120 )
+nodes/output/position = Vector2( 800, 200 )
+nodes/run/node = SubResource( 75 )
+nodes/run/position = Vector2( 140, 260 )
+nodes/walk/node = SubResource( 53 )
+nodes/walk/position = Vector2( 140, 80 )
+node_connections = [ "output", 0, "anim_tree_state", "anim_tree_state", 0, "walk", "anim_tree_state", 1, "run" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
+
+[sub_resource type="CapsuleShape" id=14]
+radius = 0.439225
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="Mesh" parent="." instance=ExtResource( 1 )]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 21 )
+anim_player = NodePath("../Mesh/AnimationPlayer")
+active = true
+root_motion_track = NodePath("Armature/Skeleton:RootMotion")
+parameters/anim_tree_state/current = 0
+parameters/run/playback = SubResource( 54 )
+parameters/run/conditions/jump = false
+parameters/walk/playback = SubResource( 54 )
+parameters/walk/conditions/jump = false
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.874549, 0 )
+shape = SubResource( 14 )
+
+[node name="RootMotionView" type="RootMotionView" parent="."]
+animation_path = NodePath("../AnimationTree")
+
+[node name="Tween" type="Tween" parent="."]
+
+[editable path="Mesh"]

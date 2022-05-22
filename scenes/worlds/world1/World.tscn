@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/platforms/base/Platform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/spring-arm-camera/SpringArmCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/worlds/world1/World.gd" type="Script" id=4]
+[ext_resource path="res://default_env.tres" type="Environment" id=5]
+
+[node name="World" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="Platform" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5, 0, 0, 0, 0.25, 0, 0, 0, 5, 0, 0.643252, 0 )
+
+[node name="Platform2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5, 0, 0, 0, 0.25, 0, 0, 0, 5, 0, -1.24895, 10.1393 )
+
+[node name="Platform3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5, 0, 0, 0, 0.00406208, -4.99934, 0, 0.249967, 0.0812415, 0, -0.658844, 10.1393 )
+
+[node name="Platform4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5, 0, 0, 0, 0.211885, -2.65367, 0, 0.132683, 4.2377, 0, 2.36785, -7.35752 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39022, 0 )
+
+[node name="SpringArm" parent="." instance=ExtResource( 3 )]
+spring_length = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.766908, 0.641757, 0, -0.641757, -0.766908, 0.0456743, 4.94527, -6.18629 )

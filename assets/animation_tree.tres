@@ -1,0 +1,8 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=2 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+
+[resource]
+nodes/Animation/node = SubResource( 1 )
+nodes/Animation/position = Vector2( 114, 162 )
+nodes/output/position = Vector2( 580, 140 )
