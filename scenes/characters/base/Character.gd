@@ -4,7 +4,7 @@ class_name Character
 onready var animation_tree:AnimationTree = $AnimationTree
 onready var tween:Tween = $Tween
 
-var gravity:float = 9.8
+var gravity:Vector3 = Vector3.ZERO
 onready var mesh:Spatial = $Mesh
 
 enum AnimationTreeState {
@@ -41,41 +41,44 @@ func _input(event):
 				set_anim_tree_state(AnimationTreeState.WALK)
 
 func _physics_process(delta):			
-	animation_tree["parameters/"+get_current_state_machine_name()+"/conditions/jump"] = Input.is_action_pressed("jump")
-		
-	var xAxis = Input.get_action_strength("left") - Input.get_action_strength("right")
-	var zAxis = Input.get_action_strength("forward") - Input.get_action_strength("backward")
-	var yAxis = 0
+	var root_motion:Transform = animation_tree.get_root_motion_transform()
+	var v = root_motion.origin / delta
 
-	var direction = Vector3(xAxis, yAxis, zAxis).normalized()
+	if is_on_floor():
+		gravity = Vector3.ZERO
+	else:
+		gravity += Vector3(0.0, -9.8, 0) * delta
+		
+	v += gravity
+
+	var dir:Vector3 = Vector3.ZERO
 	
 	if Input.is_action_pressed("forward"):
-		play_animation("forward")
+		dir.z -= 1
 	elif Input.is_action_pressed("backward"):
-		play_animation("backward")		
-	elif Input.is_action_pressed("left"):	
-		play_animation("left")
-	elif Input.is_action_pressed("right"):	
-		play_animation("right")
-	else:
-		play_animation("idle")	
-	
-	
+		dir.z += 1		
+	elif Input.is_action_pressed("left"):
+		dir.x -= 1		
+	elif Input.is_action_pressed("right"):
+		dir.x += 1
 		
-	var root_motion:Transform = animation_tree.get_root_motion_transform()
-	var velocity = root_motion.origin / delta
+	if dir.length_squared() > 0.01:
+		dir = dir.rotated(Vector3.UP, Globals.camera_spring_arm.rotation.y)
+		
+		var player_heading_2d: Vector2 = Vector2(transform.basis.z.x, transform.basis.z.z)
+		var desired_heading_2d: Vector2 = Vector2(dir.x, dir.z)
+		
+		var phi: float = desired_heading_2d.angle_to(player_heading_2d)
+		phi = phi * delta * 3
+		rotation.y += phi
+		
+		v = v.rotated(Vector3.UP, rotation.y)
+		
+		play_animation("forward")
 			
-	if direction != Vector3.ZERO:
-		rotation_degrees.y = Globals.camera_spring_arm.rotation_degrees.y - 180
-#		tween.interpolate_property(self,"rotation_degrees",
-#				rotation_degrees,
-#				Vector3(rad2deg(0),
-#					Globals.camera_spring_arm.rotation_degrees.y - 180,
-#					rad2deg(0)),
-#				0.25)
-#		tween.start()
+	else:
+		play_animation("idle")
+
+	animation_tree["parameters/"+get_current_state_machine_name()+"/conditions/jump"] = Input.is_action_pressed("jump")
 	
-			
-	velocity = transform.basis.xform(velocity)
-	
-	move_and_slide(velocity, Vector3.UP)
+	move_and_slide(v, Vector3.UP)
